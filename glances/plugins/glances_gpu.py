@@ -19,13 +19,15 @@
 
 """GPU plugin (limited to NVIDIA chipsets)"""
 
+from glances.compat import nativestr
 from glances.logger import logger
 from glances.plugins.glances_plugin import GlancesPlugin
 
 try:
     import pynvml
-except ImportError:
-    logger.debug("Could not import pynvml.  NVIDIA stats will not be collected.")
+except Exception as e:
+    logger.error("Could not import pynvml.  NVIDIA stats will not be collected.")
+    logger.debug("pynvml error: {}".format(e))
     gpu_nvidia_tag = False
 else:
     gpu_nvidia_tag = True
@@ -251,7 +253,7 @@ def get_device_handles():
 def get_device_name(device_handle):
     """Get GPU device name"""
     try:
-        return pynvml.nvmlDeviceGetName(device_handle)
+        return nativestr(pynvml.nvmlDeviceGetName(device_handle))
     except pynvml.NVMlError:
         return "NVIDIA"
 

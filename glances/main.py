@@ -173,6 +173,8 @@ Examples of use:
                             dest='path_graph', help='set the export path for graphs (default is {})'.format(tempfile.gettempdir()))
         parser.add_argument('--export-csv', default=None,
                             dest='export_csv', help='export stats to a CSV file')
+        parser.add_argument('--export-json', default=None,
+                            dest='export_json', help='export stats to a JSON file')
         parser.add_argument('--export-cassandra', action='store_true', default=False,
                             dest='export_cassandra', help='export stats to a Cassandra or Scylla server (cassandra lib needed)')
         parser.add_argument('--export-couchdb', action='store_true', default=False,
@@ -189,6 +191,8 @@ Examples of use:
                             dest='export_prometheus', help='export stats to a Prometheus exporter (prometheus_client lib needed)')
         parser.add_argument('--export-rabbitmq', action='store_true', default=False,
                             dest='export_rabbitmq', help='export stats to rabbitmq broker (pika lib needed)')
+        parser.add_argument('--export-restful', action='store_true', default=False,
+                            dest='export_restful', help='export stats to a Restful endpoint (requests lib needed)')
         parser.add_argument('--export-riemann', action='store_true', default=False,
                             dest='export_riemann', help='export stats to riemann broker (bernhard lib needed)')
         parser.add_argument('--export-statsd', action='store_true', default=False,
@@ -292,8 +296,9 @@ Examples of use:
         if WINDOWS:
             args.webserver = True
 
-        # In web server mode
+        # In web server mode, defaul refresh time: 5 sec
         if args.webserver:
+            args.time = 5
             args.process_short_name = True
 
         # Server or client login/password

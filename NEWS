@@ -2,6 +2,30 @@
 Glances Version 2
 ==============================================================================
 
+Version NEXT RELEASE
+====================
+
+Enhancements and new features:
+
+    * [WIP] Refactoring of the WebUI
+    * New export plugin: standard and configurable Restfull exporter (issue #1129)
+    * Add a JSON export module
+
+Bugs corrected:
+
+    * Installing GPU plugin crashes entire glances (issue #1102)
+    * Potential memory leak in Windows WebUI (issue #1056)
+    * glances_network `OSError: [Errno 19] No such device` (issue #1106)
+    * GPU plugin. <class 'TypeError'>: ... not JSON serializable"> (issue #1112)
+    * PermissionError on macOS (issue #1120)
+    * Cant move up or down in glances --browser (issue #1113)
+    * Unable to give aliases to or hide network interfaces and disks (issue #1126)
+    * `UnicodeDecodeError` on mountpoints with non-breaking spaces (issue #1128)
+
+Installation:
+
+    * Create a Snap of Glances (issue #1101)
+
 Version 2.10
 ============
 
